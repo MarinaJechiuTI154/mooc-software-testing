@@ -1,31 +1,35 @@
 package tudelft.leapyear;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LeapYearTest {
-    @Test
-    public void leapYearsThatAreNonCenturialYears() {
-        LeapYear ly = new LeapYear();
-        boolean result = ly.isLeapYear(2016);
-        Assertions.assertTrue(result);
-    }
+   LeapYear leap ;
 
-    @Test
-    public void leapCenturialYears() {
-        LeapYear ly = new LeapYear();
-        Assertions.assertTrue(ly.isLeapYear(2000));
-    }
+   @BeforeEach
+    void initilize(){
+       leap = new LeapYear();
+   }
 
-    @Test
-    public void nonLeapCenturialYears() {
-        LeapYear ly = new LeapYear();
-        Assertions.assertFalse(ly.isLeapYear(1500));
-    }
-
-    @Test
-    public void nonLeapYears() {
-        LeapYear ly = new LeapYear();
-        Assertions.assertFalse(ly.isLeapYear(2017));
-    }
+   @Test
+    void leapYeardivisibleby4notBy100(){
+       boolean isLeap = leap.isLeapYear(2016);
+       Assertions.assertTrue(isLeap);
+   }
+   @Test
+   void leapDivisibleBy100and400(){
+       boolean isLeap = leap.isLeapYear(1600);
+       Assertions.assertTrue(isLeap);
+   }
+   @Test
+    void leapYearDivisibleBy4and100ButNot400(){
+       boolean isLeap = leap.isLeapYear(1800);
+       Assertions.assertFalse(isLeap);
+   }
+   @Test
+    void leapYearNotDivisibleBy4(){
+       boolean isLeap = leap.isLeapYear(2003);
+       Assertions.assertFalse(isLeap);
+   }
 }
